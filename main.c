@@ -5,14 +5,19 @@ int main()
 {
     int r;
     r=fun(5);
+    printf("%d\n",r);
+    r=fun(5);
     printf("%d",r);
     return 0;
 }
+ int x;
 int fun(int n)
 {
+    //static int x=0;
     if(n>0)
     {
-        return fun(n-1)+n;
+        x++;
+        return fun(n-1)+x;
     }
     return 0;
 }
