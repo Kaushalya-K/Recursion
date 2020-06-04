@@ -1,19 +1,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main()
+int fib(int n)
 {
-    int r;
-    r=fun(5);
-    printf("%d",r);
-    return 0;
-}
-int fun(int n)
-{
-    if(n>0)
+    int t0=0,t1=1,s,i;
+    if(n<=1)
+      return n;
+    for(i=2;i<=n;i++)
     {
-        return fun(n-1)+n;
+        s=t0+t1;
+        t0=t1;
+        t1=s;
     }
-    return 0;
+    return s;
+}
+int rfib(int n)
+{
+    if(n<=1)
+        return n;
+    return rfib(n-2)+rfib(n-1);
 }
 
+int f[10];
+int mfib(int n)
+{
+    if(n<=1)
+     {
+         f[n]=n;
+         return n;
+     }
+     else
+     {
+         if(f[n-2]==-1)
+            f[n-2]=mfib(n-2);
+         if(f[n-1]==-1)
+            f[n-1]=mfib(n-1);
+         return f[n-2]+f[n-1];
+     }
+
+}
+
+int main()
+{
+    int i;
+    for(i=0;i<10;i++)
+    {
+        f[i]=-1;
+    }
+    printf("%d\n",fib(5));
+    printf("%d\n",rfib(6));
+    printf("%d\n",mfib(5));
+}
